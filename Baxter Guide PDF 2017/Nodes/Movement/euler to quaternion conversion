@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+# This subroutine takes an angle in euler coordinates (rotation about the y axis, rotation about the x axis, rotation about the z axis) for the orientation of the gripper and converts it to the Quarternian coordinate system that baxter uses
+
+import math
+
+def conversion(a,b,d):
+	ca = math.cos(a/2)
+	cb = math.cos(b/2)
+	cd = math.cos(d/2)
+	sa = math.sin(a/2)
+	sb = math.sin(b/2)
+	sd = math.sin(d/2)
+
+	w = (ca*cb*cd)-(sa*sb*sd)
+	x = (sa*sb*cd)+(ca*cb*sd)
+	y = (sa*cb*cd)+(ca*sb*sd)
+	z = (ca*sb*cd)-(sa*cb*sd)
+
+	return Quaternion(w, x, y, z)
+
+	
